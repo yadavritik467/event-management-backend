@@ -1,0 +1,89 @@
+# Event Management API
+
+#### A simple event management backend API built with Node.js, Express, and MongoDB supporting user authentication, event creation, registration, and admin approval workflows.
+
+## Features
+
+- User signup, login, logout with JWT authentication
+- Role-based access control (Admin/User)
+- Event creation, editing, listing, and single event retrieval
+- User event registration and approval flow
+- Error handling and logging
+- Secure headers with Helmet and request logging with Morgan
+
+## Tech Stack
+
+- Node.js
+
+- Express
+
+- MongoDB (Mongoose)
+
+- JWT Authentication
+
+- Winston Logging
+
+- Helmet for security headers
+
+- Morgan for HTTP request logging
+
+## Installation
+
+- Clone the repository
+
+```
+git clone https://github.com/yadavritik467/event-management-backend.git
+
+cd event-management-backend
+
+```
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Setup environment variables
+  Create a .env file in the /config folder with the following variables:
+
+```
+PORT=5000
+MONGO_URI=<your_mongodb_connection_string>
+JWT_SECRET=<your_jwt_secret>
+FRONT_URL=http://localhost:5173
+NODE_ENV=development
+
+```
+
+- start the server
+
+```
+npm run dev
+
+```
+
+- Project Structure
+
+```
+/config
+  .env
+/DB
+  DB.js                   # MongoDB connection logic
+/controllers
+  EventController.js      # User and event controller functions
+  UserController.js       # User controller functions
+/middleware
+  authMiddleware.js       # JWT token validation and role checks
+  errorMiddleware.js      # Centralized error handling
+/models/**                # schema for setting data into database  
+/routes
+  UserRoutes.js           # User authentication and profile routes
+  EventRoutes.js          # Event related routes (not shown here)
+/utils
+  catchAsync.js           # Async error wrapper & sendResponse utility
+  errorHandler.js         # Custom Error class
+  logger.js               # Winston logger setup
+index.js                  # Express app and middleware setup
+
+```
