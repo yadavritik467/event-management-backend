@@ -1,12 +1,23 @@
-import winston from "winston";
 import fs from "fs";
-import path from "path";
+import winston from "winston";
+// Check environment
+const isDev = process.env.NODE_ENV === "development";
 
-// Ensure logs directory exists
-const logDir = "logs";
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
+const transports = [];
+
+// ✅ Log to file only in development
+if (isDev) {
+
+  const logDir = "logs";
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
+
+  transports.push(new winston.transports.File({ filename: "logs/app.log" }));
 }
+
+// ✅ Always log to console
+transports.push(new winston.transports.Console());
 
 const logger = winston.createLogger({
   level: "info",
@@ -16,13 +27,7 @@ const logger = winston.createLogger({
       return `${timestamp} [${level.toUpperCase()}]: ${message}`;
     })
   ),
-  transports: [
-    new winston.transports.File({ filename: "logs/app.log" }),
-  ],
+  transports,
 });
-
-if (process.env.NODE_ENV === "development") {
-  logger.add(new winston.transports.Console());
-}
 
 export default logger;
