@@ -27,6 +27,28 @@
 
 - Morgan for HTTP request logging
 
+## For running this application on your local machine
+
+- You must have node js and npm installed on your local machine visit the below link to download the node js
+
+https://nodejs.org/en/download
+
+to check it if its is installed properly run this command
+
+# Verify the Node.js version:
+
+```
+node -v
+
+```
+
+# Verify npm version:
+
+```
+npm -v
+
+```
+
 ## Installation
 
 - Clone the repository
@@ -76,7 +98,7 @@ npm run dev
 /middleware
   authMiddleware.js       # JWT token validation and role checks
   errorMiddleware.js      # Centralized error handling
-/models/**                # schema for setting data into database  
+/models/**                # schema for setting data into database
 /routes
   UserRoutes.js           # User authentication and profile routes
   EventRoutes.js          # Event related routes (not shown here)
