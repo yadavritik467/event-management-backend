@@ -2,20 +2,21 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
 import { mongoDbConnection } from "./DB/DB.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import EventRoutes from "./routes/EventRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
-import helmet from "helmet";
-import morgan from "morgan";
 
 const app = express();
 
 dotenv.config({ path: "./config/.env" });
 // Start Server
 const PORT = process.env.PORT;
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoDbConnection();
+mongoDbConnection(MONGO_URI);
 
 // Middleware
 app.use(helmet());
